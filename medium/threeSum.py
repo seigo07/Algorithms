@@ -1,3 +1,6 @@
+# Given an integer array nums, return all the triplets
+# [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+
 # 整数配列 nums を指定すると、i != j、i != k、j != k、および nums[i] + となるすべてのトリプレット [nums[i], nums[j], nums[k]] を返します。 nums[j] + nums[k] == 0。
 
 # このプログラムは、整数の配列 nums から、合計が0になる3つの数の組を探します。

@@ -1,4 +1,6 @@
 from collections import deque
+# Given an m x n binary matrix mat, return the distance of the nearest 0 for each cell.
+# The distance between two adjacent cells is 1.
 
 # m x n のバイナリ行列マットを指定すると、各セルの最も近い 0 の距離を返します。
 # 隣接する 2 つのセル間の距離は 1 です。

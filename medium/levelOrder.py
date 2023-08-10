@@ -1,3 +1,5 @@
+# Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+
 # バイナリ ツリーのルートを指定すると、そのノードの値のレベル順序の走査を返します。 (つまり、左から右へ、レベルごとに)。
 # 二分木のノードの値のレベル順のトラバーサルを返すプログラムです。
 class TreeNode(object):

@@ -1,3 +1,7 @@
+# You are given an array of non-overlapping intervals intervals where intervals[i] = [starti, endi]
+# represent the start and the end of the ith interval and intervals is sorted in ascending order by starti.
+# You are also given an interval newInterval = [start, end] that represents the start and end of another interval.
+
 # 重複しない間隔の配列が与えられます。
 # interval[i] = [starti, endi] は i 番目の間隔の開始と終了を表し、間隔は starti によって昇順に並べ替えられます。
 # また、別の間隔の開始と終了を表す間隔 newInterval = [start, end] も指定されます。

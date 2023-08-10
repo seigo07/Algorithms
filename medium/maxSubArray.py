@@ -1,3 +1,4 @@
+# Given an integer array nums, find the subarray with the largest sum, and return its sum.
 # 整数配列 nums を指定して、サブアレイ 最大の合計を求め、その合計を返します。
 
 # このプログラムは、与えられた整数のリスト nums から最大の連続した部分列の合計を求める問題を解くものです。(Kadaneのアルゴリズム)

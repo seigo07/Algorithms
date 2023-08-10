@@ -1,3 +1,5 @@
+# Given a string s, find the length of the longest substring without repeating characters.
+
 # 文字列 s が与えられた場合、最も長い文字列の長さを見つけます。
 # 部分文字列文字を繰り返さずに。
 

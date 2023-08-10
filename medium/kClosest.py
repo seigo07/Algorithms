@@ -1,3 +1,6 @@
+# Given an array of points where points[i] = [xi, yi] represents a point on the X-Y plane
+# and an integer k, return the k closest points to the origin (0, 0).
+
 # Points[i] = [xi, yi] が X-Y 平面上の点を表す点の配列と整数 k を指定すると、原点 (0, 0) に最も近い k 個の点を返します。
 # X-Y 平面上の 2 点間の距離はユークリッド距離 (つまり、√(x1 - x2)2 + (y1 - y2)2) です。
 # 回答は任意の順序で返すことができます。
