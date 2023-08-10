@@ -1,3 +1,5 @@
+# Given the root of a binary tree, determine if it is a valid binary search tree (BST).
+
 # 二分木のルートを指定して、それが有効な二分探索木 (BST) であるかどうかを判断します。
 class TreeNode(object):
     def __init__(self, val=0, left=None, right=None):

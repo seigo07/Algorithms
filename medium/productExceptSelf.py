@@ -1,3 +1,6 @@
+# Given an integer array nums, return an array answer such that
+# answer[i] is equal to the product of all the elements of nums except nums[i].
+
 # 指定された位置の要素を除く、配列内のすべての要素の積を求める
 class Solution(object):
     def productExceptSelf(self, nums):

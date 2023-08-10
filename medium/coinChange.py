@@ -1,3 +1,6 @@
+# You are given an integer array coins representing coins of different denominations
+# and an integer amount representing a total amount of money.
+
 # この問題は「コイン変更問題」として知られており、動的計画法（特に1次元DP配列を使用するアプローチ）を用いて解く
 
 # このプログラムは、指定された額を作るために必要な最小のコイン数を計算するものです。

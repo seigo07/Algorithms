@@ -1,3 +1,5 @@
+# Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
 # プッシュ、ポップ、トップ、および最小要素の一定時間での取得をサポートするスタックを設計します。
 # 通常のスタックの機能に加えて、最小の要素をO(1)の時間複雑度で取得する機能を持つスタックを設計する
 class MinStack(object):

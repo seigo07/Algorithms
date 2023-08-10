@@ -1,3 +1,6 @@
+# Given an m x n 2D binary grid grid which represents
+# a map of '1's (land) and '0's (water), return the number of islands.
+
 # 「1」(陸地) と「0」(水) の地図を表す m x n 2D バイナリ グリッドを指定すると、島の数を返します。
 # 与えられた2Dバイナリグリッドで島の数をカウントするPythonプログラムです。
 class Solution(object):

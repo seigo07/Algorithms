@@ -1,3 +1,9 @@
+# You are given an m x n grid where each cell can have one of three values:
+# 0 representing an empty cell,
+# 1 representing a fresh orange, or
+# 2 representing a rotten orange.
+# Every minute, any fresh orange that is 4-directionally adjacent to a rotten orange becomes rotten.
+
 # m x n のグリッドが与えられ、各セルには次の 3 つの値のいずれかを指定できます。
 # 0は空のセルを表し、1 は新鮮なオレンジを表します、または2 腐ったオレンジを表します。
 # 腐ったオレンジに 4 方向に隣接する新鮮なオレンジは 1 分ごとに腐っていきます。

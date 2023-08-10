@@ -1,5 +1,11 @@
+# A trie (pronounced as "try") or prefix tree is a tree data structure
+# used to efficiently store and retrieve keys in a dataset of strings.
+# There are various applications of this data structure, such as autocomplete and spellchecker.
+
 # トライ (「トライ」と発音) またはプレフィックス ツリーは、文字列のデータセット内のキーを効率的に格納および取得するために使用されるツリー データ構造です。
 # このデータ構造には、オートコンプリートやスペルチェッカーなど、さまざまな用途があります
+
+# このプログラムは、Trie（または接頭辞ツリー）というデータ構造の実装です。Trieは特にテキストの検索や接頭辞ベースの検索で役立つ効率的なデータ構造です。
 class TrieNode:
     def __init__(self):
         self.children = {}
