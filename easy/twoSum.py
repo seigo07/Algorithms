@@ -9,6 +9,7 @@
 #                     return i, index
 
 
+# 配列を一度しか走査しないため、計算量が O(n)で済む
 def two_sum(nums, target):
 
     # ループしたnum, iを保存するためのdict
