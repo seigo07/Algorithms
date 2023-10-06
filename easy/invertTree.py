@@ -1,4 +1,6 @@
-# Definition for a binary tree node.
+# 与えられた二分木の各ノードの左右の子を交換し、二分木全体を反転
+
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -10,10 +12,11 @@ def invertTree(root):
     if root is None:
         return None
 
-    # Swap the left and right subtrees
+    # 左右の子を交換する
     root.left, root.right = root.right, root.left
 
-    # Recursively invert the left and right subtrees
+    # ツリー全体を反転（左右の子ツリーに再帰的に適用）
+    # 再帰呼び出しにより、ツリー内のすべてのノードを反転
     invertTree(root.left)
     invertTree(root.right)
 
