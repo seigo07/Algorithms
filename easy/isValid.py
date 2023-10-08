@@ -3,26 +3,6 @@
 # 最初に開いた括弧が最初に閉じられなければならない
 
 
-# def isValid(s):
-#     mapping = {
-#         "(": ")",
-#         "[": "]",
-#         "{": "}"
-#     }
-#     stack = []
-#     last_index = len(s) - 1
-#     for i, c in enumerate(s):
-#         if c in mapping:
-#             stack.append(c)
-#         else:
-#             popped_element = stack.pop()
-#             if mapping[popped_element] == c:
-#                 if not stack and last_index == i:
-#                     return True
-#             else:
-#                 return False
-
-
 def isValid(s):
     stack = []
     # 閉じカッコと開きカッコの対応関係をマッピング

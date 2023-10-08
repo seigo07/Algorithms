@@ -1,13 +1,6 @@
 # 配列 nums の中から、2つの数を選んで足し合わせて、
 # 目標値 target を達成するような2つの数のインデックスを見つける
 
-# def two_sum(nums, target):
-#     for i, _ in enumerate(nums):
-#         for index in range(len(nums)):
-#             if i != index:
-#                 if nums[i] + nums[index] == target:
-#                     return i, index
-
 
 # 配列を一度しか走査しないため、計算量が O(n)で済む
 def two_sum(nums, target):
