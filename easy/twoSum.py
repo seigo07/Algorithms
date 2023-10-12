@@ -18,7 +18,7 @@ def two_sum(nums, target):
         # 走査されたiとnumを保存
         # e.g. [2: 0]
         # key: num
-        # value: index
+        # value: i
         num_dict[num] = i
     return None
 

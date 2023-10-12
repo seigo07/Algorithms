@@ -3,7 +3,7 @@
 # 最初に開いた括弧が最初に閉じられなければならない
 
 
-def isValid(s):
+def is_valid(s):
     stack = []
     # 閉じカッコと開きカッコの対応関係をマッピング
     mapping = {
@@ -31,8 +31,8 @@ def isValid(s):
 
 
 # テストケース
-print(isValid("()"))  # True
-print(isValid("()[]{}"))  # True
-print(isValid("(]"))  # False
-print(isValid("([)]"))  # False
-print(isValid("{[]}"))  # True
+print(is_valid("()"))  # True
+print(is_valid("()[]{}"))  # True
+print(is_valid("(]"))  # False
+print(is_valid("([)]"))  # False
+print(is_valid("{[]}"))  # True
