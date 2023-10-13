@@ -4,22 +4,20 @@
 # 探索範囲を半分に狭めていく事で、O(log n)の時間複雑度で効率的に探索可能
 
 
-def binarySearch(nums, target):
+def binary_search(nums, target):
     low = 0
     high = len(nums)-1
     while low < high:
-        # リスト内の中央値を取得
+        # リスト内の中央値のindexを取得
         mid = (low + high) // 2
         if nums[mid] == target:
             # targetが見つかった場合
             return mid
         elif nums[mid] < target:
-            # ターゲットが中央より大きい場合、indexの下限をmid+1に設定
-            # midより左側のindexの要素を無視し、右側に絞る
+            # ターゲットが中央より大きい場合、indexの下限をmid+1に設定し、探索を右側に絞る
             low = mid + 1
         else:
-            # ターゲットが中央より小さい場合、indexの上限をmid-1に設定
-            # midより右側のindexの要素を無視し、左側に絞る
+            # ターゲットが中央より大きい場合、indexの上限をmid-1に設定し、探索を左側に絞る
             high = mid - 1
     # targetが見つからない場合
     return -1
@@ -27,10 +25,10 @@ def binarySearch(nums, target):
 
 nums = [-1, 0, 3, 5, 9, 12]
 target = 9
-index = binarySearch(nums, target)
+index = binary_search(nums, target)
 print(f"The target {target} is at index: {index}")
 
 
 target = 2
-index = binarySearch(nums, target)
+index = binary_search(nums, target)
 print(f"The target {target} is at index: {index}")

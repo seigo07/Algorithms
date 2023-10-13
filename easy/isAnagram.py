@@ -3,15 +3,15 @@
 # 元の文字をすべて正確に一度ずつ使用して新しい単語やフレーズを作成すること
 
 
-def isAnagram(s, t):
+def is_anagram(s, t):
     # 文字列をソートして比較することで、アナグラムかどうかを判定します
     return sorted(s) == sorted(t)
 
 
 s = "anagram"
 t = "nagaram"
-print(isAnagram(s, t))
+print(is_anagram(s, t))
 s = "rat"
 t = "car"
-print(isAnagram(s, t))
+print(is_anagram(s, t))
 
