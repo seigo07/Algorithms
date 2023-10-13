@@ -3,7 +3,7 @@
 # この配列内で株を一度だけ買い、将来のある日にそれを売却して利益を最大化するのが目的
 
 
-def maxProfit(prices):
+def max_profit(prices):
     # 最小価格を初期化
     min_price = float("inf")
     # 最大利益を初期化
@@ -19,4 +19,4 @@ def maxProfit(prices):
 
 
 prices = [7, 1, 5, 3, 6, 4]
-print(maxProfit(prices))
+print(max_profit(prices))
