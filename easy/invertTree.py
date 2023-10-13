@@ -8,7 +8,7 @@ class TreeNode:
         self.right = None
 
 
-def invertTree(root):
+def invert_tree(root):
     if root is None:
         return None
 
@@ -17,8 +17,8 @@ def invertTree(root):
 
     # ツリー全体を反転（左右の子ツリーに再帰的に適用）
     # 再帰呼び出しにより、ツリー内のすべてのノードを反転
-    invertTree(root.left)
-    invertTree(root.right)
+    invert_tree(root.left)
+    invert_tree(root.right)
 
     return root
 
@@ -31,4 +31,4 @@ root.left.right = TreeNode(3)
 root.right.left = TreeNode(6)
 root.right.right = TreeNode(9)
 
-root = invertTree(root)
+root = invert_tree(root)
