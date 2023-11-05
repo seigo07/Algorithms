@@ -13,10 +13,10 @@ def is_valid(s):
     }
     # 1文字ずつループ
     for char in s:
-        # 閉じカッコの場合
+        # 開きカッコの場合、スタックに追加
         if char in mapping.values():
-            # 開きカッコの場合、スタックに追加
             stack.append(char)
+        # 閉じカッコの場合
         else:
             # スタックが空の場合、閉じカッコに対応する開きカッコがないので無効
             if not stack:
