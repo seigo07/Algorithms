@@ -2,7 +2,7 @@
 
 
 # sr, sc: 開始位置
-def floodFill(image, sr, sc, newColor):
+def flood_fill(image, sr, sc, newColor):
 
     """
     :param sr: 塗りつぶしを開始する座標の行インデックス。
@@ -49,7 +49,7 @@ image = [
 ]
 
 # 画像を塗りつぶし
-newImage = floodFill(image, 1, 1, 2)
+newImage = flood_fill(image, 1, 1, 2)
 
 # 結果の表示
 for row in newImage:

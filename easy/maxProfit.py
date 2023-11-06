@@ -4,9 +4,9 @@
 
 
 def max_profit(prices):
-    # 最小価格を初期化
+    # 最初のループで値を最小値として保持するため、無限大の値を設定
     min_price = float("inf")
-    # 最大利益を初期化
+    # 最初の最大利益は0
     max_profit = 0
 
     for price in prices:
