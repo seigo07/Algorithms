@@ -11,7 +11,7 @@ class TreeNode:
         self.right = None
 
 
-def lowestCommonAncestor(root, p, q):
+def lowest_common_ancestor(root, p, q):
     # BSTの性質を利用して、LCAを見つける
     while root:
         if p.val < root.val and q.val < root.val:
@@ -43,10 +43,10 @@ root.right.right = TreeNode(9)
 
 p = TreeNode(2)
 q = TreeNode(8)
-ancestor = lowestCommonAncestor(root, p, q)
+ancestor = lowest_common_ancestor(root, p, q)
 print(ancestor.val)  # Output: 6
 
 p = TreeNode(2)
 q = TreeNode(4)
-ancestor = lowestCommonAncestor(root, p, q)
+ancestor = lowest_common_ancestor(root, p, q)
 print(ancestor.val)  # Output: 2
