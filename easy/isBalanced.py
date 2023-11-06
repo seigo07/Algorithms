@@ -9,7 +9,7 @@ class TreeNode:
         self.right = right
 
 
-def isBalanced(root):
+def is_balanced(root):
     # ツリーの高さを計算
     def height(node):
 
@@ -51,7 +51,7 @@ root_balanced.left = TreeNode(2)
 root_balanced.right = TreeNode(2)
 root_balanced.left.left = TreeNode(3)
 root_balanced.left.right = TreeNode(3)
-print(isBalanced(root_balanced))  # True
+print(is_balanced(root_balanced))  # True
 
 # バランスしていないツリー
 #     1
@@ -68,4 +68,4 @@ root_unbalanced.left.left = TreeNode(3)
 root_unbalanced.left.right = TreeNode(3)
 root_unbalanced.left.left.left = TreeNode(4)
 root_unbalanced.left.left.right = TreeNode(4)
-print(isBalanced(root_unbalanced))  # False
+print(is_balanced(root_unbalanced))  # False
