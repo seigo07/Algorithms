@@ -2,7 +2,7 @@
 # すべての機能（push、peek、pop、empty）を実装する
 
 
-class myQueue:
+class myqueue:
     def __init__(self):
         self.s1 = []  # 要素を追加するスタック
         self.s2 = []  # 要素を取り出すための補助スタック
@@ -32,7 +32,7 @@ class myQueue:
         return not self.s1 and not self.s2
 
 
-queue = myQueue()
+queue = myqueue()
 
 queue.push(1)
 print(queue.empty())  # Falseを出力
