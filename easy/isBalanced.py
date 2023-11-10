@@ -23,8 +23,8 @@ def is_balanced(root):
         # 右部分木の高さを計算
         right_height = height(node.right)
 
-        # 左右の部分木の高さ差が1を超えるか、
-        # またはどちらかの部分木がバランスしていない場合は-1を返す
+        # どちらかの部分木がバランスしていない場合は-1を返す
+        # または左右の部分木の高さの差が1を超える場合も-1を返す
         if left_height == -1 or right_height == -1 or abs(left_height - right_height) > 1:
             return -1
 
