@@ -1,4 +1,6 @@
-''' 
+
+'''
+
 BST（Binary Search Tree）におけるLCA（Lowest Common Ancestor：最小共通祖先）
 (2つのノード p と q に対して、両方のノードを子孫に持つ最も低い（深い）ノードを探す。
 ノード自身が子孫と見なされるため、p または q が共通祖先になることもある。
@@ -18,6 +20,11 @@ LCAは 6
 p = 2, q = 4 のとき：
 4 は 2 の子孫なので、共通祖先は 2
 LCAは 2
+
+p.val と q.val が現在のノードの左右に分かれていれば、そこがLCA
+両方小さい → 左へ
+両方大きい → 右へ
+
 '''
 
 class TreeNode:
@@ -31,13 +38,13 @@ def lowest_common_ancestor(root, p, q):
     # BSTの性質を利用して、LCAを見つける
     while root:
         if p.val < root.val and q.val < root.val:
-            # pとqが現在のrootの値よりも小さい場合、左部分木に移動
+            # p and q < root -> 左へ
             root = root.left
         elif p.val > root.val and q.val > root.val:
-            # pとqが現在のrootの値よりも大きい場合、右部分木に移動
+            # p and q > root -> 左へ
             root = root.right
         else:
-            # pとqが異なる部分木に存在する場合、LCAは現在のroot
+            # p and qが現在のノードの左右に分かれている場合、現在のrootがLCA
             return root
 
 root = TreeNode(6)
