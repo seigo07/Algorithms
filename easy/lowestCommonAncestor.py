@@ -1,8 +1,8 @@
-# 与えられた二分探索木（Binary Search Tree、BST）内で、
-# 与えられた p と q の最小共通の祖先（Lowest Common Ancestor、LCA）を見つける
-# BSTは、各ノードが特定の順序で整列された値を持つデータ構造であり、
-# LCAは与えられた p と q のノードの共通の祖先のうちで最も深いノードを指す
-
+''' 
+BST（Binary Search Tree）におけるLCA（Lowest Common Ancestor：最小共通祖先）
+(2つのノード p と q に対して、両方のノードを子孫に持つ最も低い（深い）ノードを探す。
+ノード自身が子孫と見なされるため、p または q が共通祖先になることもある。
+'''
 
 class TreeNode:
     def __init__(self, x):
