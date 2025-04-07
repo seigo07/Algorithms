@@ -1,32 +1,28 @@
-# 文字 '('、')'、'{'、'}'、'['、および ']' のみを含む文字列 s を指定
-# 開き括弧と閉じ括弧は同じタイプである必要がある
-# 最初に開いた括弧が最初に閉じられなければならない
 
+'''
+文字列内の括弧が「正しく開閉しているか」を判定
+最初に開いた括弧が最初に閉じられなければならない
+'''
 
 def is_valid(s):
+
+    # 開き括弧格納用
     stack = []
-    # 閉じカッコと開きカッコの対応関係をマッピング
-    mapping = {
-        ")": "(",
-        "}": "{",
-        "]": "["
-    }
-    # 1文字ずつループ
+
+    # 閉じ括弧に対応する開き括弧を定義
+    bracket_map = {')': '(', '}': '{', ']': '['}
+    
     for char in s:
-        # 開きカッコの場合、スタックに追加
-        if char in mapping.values():
-            stack.append(char)
-        # 閉じカッコの場合
+        if char in bracket_map:
+            top = stack.pop() if stack else '#'
+            # 閉じ括弧の場合、stackの最後の要素と対応する開き括弧かどうかをチェック
+            if bracket_map[char] != top:
+                return False
         else:
-            # スタックが空の場合、閉じカッコに対応する開きカッコがないので無効
-            if not stack:
-                return False
-            # 閉じカッコに対応する開きカッコをstackから取り出す
-            top_bracket = stack.pop()
-            # 対応する開きカッコでない場合、無効
-            if mapping[char] != top_bracket:
-                return False
-    # stackが空の場合、全てのカッコが対応されているため、Trueを返す。
+            # 開き括弧の場合、stackに追加
+            stack.append(char)
+
+    # stackが空ならすべて正しく閉じられているため True
     return not stack
 
 
