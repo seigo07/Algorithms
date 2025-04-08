@@ -1,4 +1,21 @@
-# 二つのソートされたリンクリストをマージして、1つのソートされたリストを作成する
+
+'''
+
+2つのソート済み連結リストをマージ
+
+ループごとのcurrentとdummyの遷移（値のみ）
+ステップ	current.val	dummy.nextのリスト状態
+初期	0（dummy）	空（まだ繋がっていない）
+1回目	1	1
+2回目	1	1 → 1
+3回目	2	1 → 1 → 2
+4回目	3	1 → 1 → 2 → 3
+5回目	4	1 → 1 → 2 → 3 → 4
+6回目	4	1 → 1 → 2 → 3 → 4 → 4
+
+最終結果（dummy.next）: 1 → 1 → 2 → 3 → 4 → 4
+
+'''
 
 
 class ListNode:
@@ -9,40 +26,20 @@ class ListNode:
 
 def merge_two_lists(list1, list2):
 
-    # マージ操作の簡略化のためのダミーノード
-    dummy = ListNode()
-    # ポインタを渡す
-    current = dummy
+    dummy = ListNode()  # マージ後リストの先頭を保持する固定ノード。最初から最後まで不変
+    current = dummy # 現在のノード追加位置。マージされたリストの最後尾へ1つずつ進む
 
+    # list1とlist2を比較し、小さい方を結果リストに追加
     while list1 and list2:
-        # 小さい方の要素を新しいリンクリストに追加
         if list1.val < list2.val:
-            current.next = list1
-            # 次のノードに進める
-            list1 = list1.next
+            current.next = list1  # 小さい方のノードを繋げ、ポインタを進める
+            list1 = list1.next  # list1を次に進める
         else:
-            # current ポインタの次のノードを list2 の現在のノードに設定
-            # current ポインタが新しいリストで次に追加されるノードである list2 を指す
-            current.next = list2
-            # 次のノードに進める
-            list2 = list2.next
-        # ポインタを次のノードに進める
-        # 操作中のリストが入る
-        # e.g.
-        # 1 -> 3 -> 4 ->
-        # 1 -> 2 -> 4 ->
-        # 2 -> 4 ->
-        # 3 -> 4 ->
-        # 4 ->
-        current = current.next
-        print(current.val)
+            current.next = list2  # 小さい方のノードを繋げ、ポインタを進める
+            list2 = list2.next  # list2を次に進める
+        current = current.next  # 挿入位置を1つ進める
 
-    # どちらかのリストが空になった場合、残りのリストを追加
-    if list1:
-        current.next = list1
-    if list2:
-        current.next = list2
-
+    current.next = list1 if list1 else list2  # 片方のリストが残っていたら、そのまま繋げる
     return dummy.next  # ダミーノードの次のノードを返す（マージされたリストの先頭）
 
 
