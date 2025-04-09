@@ -1,25 +1,26 @@
-# ransomNoteの各文字がmagazineから取得可能な場合はTrueを返し、それ以外の場合はFalseを返す
+
+# ransom_noteがmagazineの文字を使って構成可能かを判定
+
+from collections import Counter
 
 
-def can_construct(ransomNote, magazine):
-    # magazine内の各文字の出現回数をカウントするdic
+def can_construct(ransom_note, magazine):
+
+    # 各文字の出現回数をカウント
     # e.g. {'a': 3, 'b': 3, 'c': 2}
-    magazine_count = {}
-    for char in magazine:
-        # charがmagazine内に存在しない場合0を返し、文字の出現回数を1に設定
-        # それ以外の場合、文字の出現回数をインクリメント
-        magazine_count[char] = magazine_count.get(char, 0) + 1
+    ransom_count = Counter(ransom_note)
+    magazine_count = Counter(magazine)
 
-    # ransomNote内の各文字の出現回数をカウントし、magazine内の文字を使用して構築できるか判定
-    for char in ransomNote:
-        # 辞書に文字の登録がない場合
-        if char not in magazine_count or magazine_count[char] == 0:
+    print(ransom_count)
+    print(magazine_count)
+
+    # 各文字の必要数が magazine に足りているか確認
+    for char, count in ransom_count.items():
+        if magazine_count[char] < count:
+            # 一文字でも足りなければFalse
             return False
-        magazine_count[char] -= 1
-
-    # 辞書内の文字が使い切られていない場合
+    # すべての文字が足りていればTrue
     return True
-
 
 # 例の実行
 ransom_note = "aabb"
