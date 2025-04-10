@@ -1,5 +1,9 @@
-# DFSを使用して、指定された座標から始まる画像内の連結した領域を塗りつぶす
+'''
+DFSを使用して、
+指定された座標 (sr, sc) から始めて、
+同じ色の隣接ピクセルをすべて指定された新しい color に塗り替える
 
+'''
 
 # sr, sc: 開始位置
 def flood_fill(image, sr, sc, newColor):
@@ -13,7 +17,7 @@ def flood_fill(image, sr, sc, newColor):
     # 初期位置の色（塗りつぶしを開始する色）を取得
     startColor = image[sr][sc]
 
-    # すでに指定された色に塗りつぶされている場合は何もしない
+    # すでに同じ色なら何もしない
     if startColor == newColor:
         return image
 
