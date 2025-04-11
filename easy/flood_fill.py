@@ -39,22 +39,16 @@ def flood_fill(image, sr, sc, newColor):
             dfs(r, c + 1) # 右
             dfs(r, c - 1) # 左
 
-    # 深さ優先探索を開始
     dfs(sr, sc)
-
     return image
 
 
-# サンプル画像
 image = [
     [1, 1, 1],
     [1, 1, 0],
     [1, 0, 1]
 ]
 
-# 画像を塗りつぶし
 newImage = flood_fill(image, 1, 1, 2)
-
-# 結果の表示
 for row in newImage:
     print(row)
