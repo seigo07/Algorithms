@@ -7,7 +7,7 @@ class ListNode:
         self.val = val
         self.next = next
 
-def middleNode(head):
+def middle_node(head):
     # 2ポインタ法（高速・低速）を使う
     slow = fast = head
     # slow は1ステップずつ、fast は2ステップずつ進む
@@ -35,5 +35,5 @@ def print_linked_list(head):
 # テスト用リンクリスト [1, 2, 3, 4, 5, 6]
 head = create_linked_list([1, 2, 3, 4, 5, 6])
 print_linked_list(head)
-mid = middleNode(head)
+mid = middle_node(head)
 print("Middle Node Value:", mid.val) # Output: 4

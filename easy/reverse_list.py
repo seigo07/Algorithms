@@ -61,7 +61,7 @@ def reverse_list(head):
     return prev  # 新しいhead
 
 
-def printList(head):
+def print_list(head):
     while head:
         print(head.val, end=" -> ")
         head = head.next
@@ -75,9 +75,9 @@ node2 = ListNode(2, node3)
 head = ListNode(1, node2)
 
 print("Before reverse:")
-printList(head)
+print_list(head)
 
 reversed_head = reverse_list(head)
 
 print("After reverse:")
-printList(reversed_head)
+print_list(reversed_head)

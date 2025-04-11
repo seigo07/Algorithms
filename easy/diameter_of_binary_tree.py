@@ -1,7 +1,6 @@
 
-'''
-二分木において、任意の2ノード間で最も長いパス（直径）の長さ（エッジ数）を求める。
-'''
+# 二分木において、任意の2ノード間で最も長いパス（直径）の長さ（エッジ数）を求める。
+
 
 
 # Definition for a binary tree node.
@@ -12,7 +11,7 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+    def diameter_of_binary_tree(self, root: TreeNode) -> int:
         self.max_diameter = 0
 
         def dfs(node):
@@ -41,4 +40,4 @@ root.left = TreeNode(2, TreeNode(4), TreeNode(5))
 root.right = TreeNode(3)
 
 sol = Solution()
-print(sol.diameterOfBinaryTree(root))  # 出力: 3 (ノード4-2-1-3の経路)
+print(sol.diameter_of_binary_tree(root))  # 出力: 3 (ノード4-2-1-3の経路)
