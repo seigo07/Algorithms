@@ -1,5 +1,5 @@
-# 与えられたリンクリストに循環（サイクル）があるかどうかを検出
-# リンクリスト内のノードは、次のポインタを辿ることで連続して再び到達できる場合循環である
+
+# 連結リストにサイクルがあるかどうかを検出し、存在すれば True を返し、なければ False を返す
 
 
 class ListNode:
@@ -9,27 +9,19 @@ class ListNode:
 
 
 def has_cycle(head):
+    
+    slow = head
+    fast = head
 
-    # リストが空、またはノードが1つしかない場合、循環はない
-    if not head or not head.next:
-        return False
-
-    slow = head  # slowポインタは1つずつ進む
-    fast = head.next  # fastポインタは2つずつ進む
-
-    # スローポインタとファーストポインタが一致するまで繰り返します
-    while slow != fast:
-
-        # ファーストポインタが末尾に到達する前にNoneになった場合、循環はない
-        if not fast or not fast.next:
-            return False
-
-        # 循環チェックのため、スローポインタは1つ進み、ファーストポインタは2つ進む
+    while fast and fast.next:
+        # slow は1ノードずつ進みfast は2ノードずつ進む
         slow = slow.next
         fast = fast.next.next
-
-    # スローポインタとファーストポインタが一致した場合、循環がある
-    return True
+        # slow と fast がどこかでぶつかればサイクルがある。
+        if slow == fast:
+            return True
+    # fast が None に到達したらサイクルはない
+    return False
 
 
 # リンクリストを作成: 1 -> 2 -> 3
