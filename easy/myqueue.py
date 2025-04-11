@@ -1,11 +1,14 @@
-# 2つのスタックを使用して、FIFO（First-In-First-Out）キューの
-# すべての機能（push、peek、pop、empty）を実装する
+
+'''
+2つのスタックを使用して、FIFO（First-In-First-Out）キューの
+すべての機能（push、peek、pop、empty）を実装する
+'''
 
 
-class myqueue:
+class MyQueue:
     def __init__(self):
-        self.s1 = []  # 要素を追加するスタック
-        self.s2 = []  # 要素を取り出すための補助スタック
+        self.s1 = []  # 入力スタック（push専用）
+        self.s2 = []  # 出力スタック（pop/peek専用）
 
     # s1に要素を追加するだけ
     def push(self, value):
@@ -13,10 +16,10 @@ class myqueue:
 
     # 最も古い要素を取り出す
     def pop(self):
-        # stack2が空である場合、stack1から要素をすべて取り出して逆順にstack2に移動する
-        # これにより、最も古い要素がstack2の先頭にくるようになる
+        # s2が空の場合、s1から要素をすべて取り出して逆順にs2に移動する
+        # これにより、最も古い要素がs2の先頭にくるようになる
         self.peek()
-        # stack2から要素を取り出し、FIFOの動作を実現
+        # s2から要素を取り出し、FIFOの動作を実現
         return self.s2.pop()
 
     # キューの最後の要素（キューの先頭要素）を取得（取り出しは行わない）
@@ -32,7 +35,7 @@ class myqueue:
         return not self.s1 and not self.s2
 
 
-queue = myqueue()
+queue = MyQueue()
 
 queue.push(1)
 print(queue.empty())  # Falseを出力
