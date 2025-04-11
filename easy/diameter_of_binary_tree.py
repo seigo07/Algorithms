@@ -28,3 +28,17 @@ class Solution:
 
         dfs(root)
         return self.max_diameter
+    
+# サンプルツリー:
+#       1
+#      / \
+#     2   3
+#    / \     
+#   4   5    
+
+root = TreeNode(1)
+root.left = TreeNode(2, TreeNode(4), TreeNode(5))
+root.right = TreeNode(3)
+
+sol = Solution()
+print(sol.diameterOfBinaryTree(root))  # 出力: 3 (ノード4-2-1-3の経路)
