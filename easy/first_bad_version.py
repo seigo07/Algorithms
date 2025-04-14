@@ -40,4 +40,4 @@ n = 5
 # 最初のバッドバージョンを見つける
 first_bad = first_bad_version(n)
 
-print("最初のバッドバージョンは:", first_bad)
+print("最初のバッドバージョンは:", first_bad) # Output: 4
