@@ -1,0 +1,30 @@
+
+'''
+
+2つの文字列 s と t を比較し、#（バックスペース）を適用した結果が等しいかどうかを判定
+
+プロセス
+1.# をバックスペースとして処理する関数を定義
+2.2つの文字列にそれぞれ処理を適用
+3.結果を比較して同じなら True を返す
+
+'''
+
+
+def process(text):
+    stack = []
+    for char in text:
+        if char == '#':
+            if stack:
+                stack.pop()
+        else:
+            stack.append(char)
+    return ''.join(stack)
+
+def backspace_compare(s, t):
+    return process(s) == process(t)
+
+# 実行例
+s = "ab#c"
+t = "ad#c"
+print(backspace_compare(s, t))  # True
