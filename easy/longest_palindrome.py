@@ -3,6 +3,7 @@
 
 from collections import Counter
 
+
 def longest_palindrome(s):
     count = Counter(s)  # 文字ごとの出現回数をカウント
     length = 0
