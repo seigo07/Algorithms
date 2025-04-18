@@ -1,0 +1,31 @@
+
+'''
+昇順にソートされた整数配列 nums を高さバランスの取れた二分探索木（BST）に変換
+→ 高さバランスとは、どのノードでも左右の部分木の高さ差が1以下であること
+'''
+
+
+# 二分探索木のノード定義
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+# 入力配列を受け取り、木構造を返すメイン関数
+def sorted_array_to_BST(nums):
+    # 再帰関数。中央要素をルートとして左右を分割し、部分木を構築
+    def buildBST(left, right):
+        if left > right:
+            return None
+        mid = (left + right) // 2  # 中央を選び、平衡な木を保証
+        node = TreeNode(nums[mid])
+        node.left = buildBST(left, mid - 1)    # 左左側の再帰処理（小さい値）
+        node.right = buildBST(mid + 1, right)  # 右側の再帰処理（大きい値）
+        return node
+
+    return buildBST(0, len(nums) - 1)
+
+# 実行例
+nums = [-10, -3, 0, 5, 9]
+tree = sorted_array_to_BST(nums)
