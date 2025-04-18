@@ -10,21 +10,21 @@ class TreeNode:
         self.left = left
         self.right = right
 
-def isSubtree(root, subRoot):
+def is_subtree(root, subRoot):
     if not root:
         return False
-    if isSameTree(root, subRoot):
+    if is_sametree(root, subRoot):
         return True
     # 左右の部分木で再帰的にチェック
-    return isSubtree(root.left, subRoot) or isSubtree(root.right, subRoot)
+    return is_subtree(root.left, subRoot) or is_subtree(root.right, subRoot)
 
-def isSameTree(s, t):
+def is_sametree(s, t):
     if not s and not t:
         return True
     if not s or not t or s.val != t.val:
         return False
     # 左右のノードの値と構造が一致しているか
-    return isSameTree(s.left, t.left) and isSameTree(s.right, t.right)
+    return is_sametree(s.left, t.left) and is_sametree(s.right, t.right)
 
 
 # --- テスト用の木構造を定義 ---
@@ -51,5 +51,5 @@ subRoot.left = TreeNode(1)
 subRoot.right = TreeNode(2)
 
 # --- 結果出力 ---
-result = isSubtree(root, subRoot)
+result = is_subtree(root, subRoot)
 print("Is subRoot a subtree of root?:", result)
