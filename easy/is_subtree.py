@@ -46,10 +46,10 @@ root.left.right = TreeNode(2)
 #     / \
 #    1   2
 
-subRoot = TreeNode(4)
-subRoot.left = TreeNode(1)
-subRoot.right = TreeNode(2)
+subroot = TreeNode(4)
+subroot.left = TreeNode(1)
+subroot.right = TreeNode(2)
 
 # --- 結果出力 ---
-result = is_subtree(root, subRoot)
-print("Is subRoot a subtree of root?:", result)
+result = is_subtree(root, subroot)
+print("Is subroot a subtree of root?:", result)
