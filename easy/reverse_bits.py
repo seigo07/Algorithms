@@ -4,7 +4,7 @@
 '''
 
 
-def reverse_bits(n: int) -> int:
+def reverse_bits(n):
     result = 0  # 結果用の空の整数を初期化
     for _ in range(32): # 32ビットすべてに対して処理
         # resultを左に1ビットシフトして空きビットを作る
