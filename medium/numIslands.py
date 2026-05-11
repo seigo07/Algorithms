@@ -1,42 +1,81 @@
-# Given an m x n 2D binary grid grid which represents
-# a map of '1's (land) and '0's (water), return the number of islands.
+下記をただ記録しろ
+# 「1」(陸地) と「0」(水)
+# 「まだ見てない1」を見つけたら、上下左右をDFS/BFSで再帰探索
+#  カウント+1（探索済みとする）
 
-# 「1」(陸地) と「0」(水) の地図を表す m x n 2D バイナリ グリッドを指定すると、島の数を返します。
-# 与えられた2Dバイナリグリッドで島の数をカウントするPythonプログラムです。
-class Solution(object):
-    def numIslands(self, grid):
-        if not grid:
-            return 0
+from collections import deque
 
-        m, n = len(grid), len(grid[0])
-        count = 0
+def numIslands(grid):
+    rows = len(grid)
+    cols = len(grid[0])
+    count = 0
 
-        def dfs(i, j):
-            if i < 0 or i >= m or j < 0 or j >= n or grid[i][j] == '0':
-                return
-            grid[i][j] = '0'  # マークする
-            dfs(i - 1, j)    # 上
-            dfs(i + 1, j)    # 下
-            dfs(i, j - 1)    # 左
-            dfs(i, j + 1)    # 右
+    # 上下左右のそれぞれ行き止まり(1→0)まで探す
+    # 行き止まったら次へ行く(上→下→左→右)
+    # スタック（LIFO）/ 再帰関数 / 組み合わせ全列挙
+    def dfs(r, c):
+        if (
+            r < 0 or r >= rows or   # 範囲外
+            c < 0 or c >= cols or   # 海
+            grid[r][c] == "0"       # 訪問済み
+        ):
+            return
+        
+        grid[r][c] = '0'  # 訪問済みにする
 
-        for i in range(m):
-            for j in range(n):
-                if grid[i][j] == '1':
-                    dfs(i, j)
-                    count += 1
+        # 上下左右探索
+        dfs(r - 1, c)    # 上
+        dfs(r + 1, c)    # 下
+        dfs(r, c - 1)    # 左
+        dfs(r, c + 1)    # 右
 
-        return count
+    # 1見つけたらqueueに入れる
+    # 1個ずつ取り出して上下左右を見る(+1の上下左右のマスを見る。次に+2の上下左右のマスを見る。次に+3の上下左右のマスを見る)
+    # キュー（FIFO）/ 最短経路
+    def bfs(r, c):
+        q = deque([(r,c)])  # 最初の島セルを入れる
+        grid[r][c] = '0'  # 訪問済みにする
 
+        # queueが空になるまで探索
+        while q:
+            r, c = q.popleft()  # 先頭取り出し
 
-# インスタンスの作成
-solution = Solution()
+            # 上下左右
+            directions = [
+                (-1, 0),  # 上
+                (1, 0),   # 下
+                (0, -1),  # 左
+                (0, 1)    # 右
+            ]
 
-# 使用例
+            for dr, dc in directions:
+
+                nr = r + dr
+                nc = c + dc
+
+                # 範囲内 かつ 島なら
+                if (
+                    0 <= nr < rows and
+                    0 <= nc < cols and
+                    grid[nr][nc] == "1"
+                ):
+                    grid[nr][nc] = "0"  # 訪問済みにする
+                    q.append((nr, nc))  # 次に探索するためqueueへ
+
+    for r in range(rows):
+        for c in range(cols):
+            if grid[r][c] == '1':   # 新しい島発見
+                # dfs(r, c)
+                bfs(r, c)
+                count += 1
+
+    return count
+
 grid = [
     ['1', '1', '0', '0', '0'],
     ['1', '1', '0', '0', '0'],
     ['0', '0', '1', '0', '0'],
     ['0', '0', '0', '1', '1']
 ]
-print(solution.numIslands(grid))  # 出力: 3
+
+print(numIslands(grid)) # 出力: 3 (左上、真ん中、右下)
