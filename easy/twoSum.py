@@ -1,28 +1,21 @@
-# 配列 nums の中から、2つの数を選んで足し合わせて、
-# 目標値 target を達成するような2つの数のインデックスを見つける
-
-
-# 配列を一度しか走査しないため、計算量が O(n)で済む
+# 配列 nums の中から足して target になる 2つの数字の index を返す。
 def two_sum(nums, target):
 
-    # ループしたnum, iを保存するためのdict
-    num_dict = {}
+    num_dict = {}   # ループした{num: i}を保存
 
-    # 配列を一度走査し、check if target - num in num_dict
+    # 1回ループするだけなので計算量が O(n)で済む
     for i, num in enumerate(nums):
-        complement = target - num
+        complement = target - num   # 残りの必要な値を計算
+
+        # 必要な値が既にあれば答え
         if complement in num_dict:
-            # 差が辞書に存在する場合、辞書の差がkeyのindexと現在のindexのペアを返す
             return [num_dict[complement], i]
 
-        # 走査されたiとnumを保存
-        # e.g. [2: 0]
-        # key: num
-        # value: i
+        # 必要な値がなければ今の値とiを保存
         num_dict[num] = i
     return None
 
 
 nums = [2, 7, 11, 15]
 target = 9
-print(two_sum(nums, target))  # Output will be [0, 1]
+print(two_sum(nums, target))  #[0, 1]
