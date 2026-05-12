@@ -1,35 +1,21 @@
-# Given a string s, find the length of the longest substring without repeating characters.
+# 文字列の中で、重複なしの最長部分文字列の長さを求める(abcabcbb→abcの3)
+# 時間: O(n) 空間: O(n) 各文字を最大2回しか見ないので高速
+def lengthOfLongestSubstring(s):
+    used = {}      # 各文字: 最後に出たindex {‘a’:0,‘b’:1,‘c’:2}
+    left = 0       # 「重複なし部分文字列」の左端index
+    max_len = 0
+    for right in range(len(s)):
+        char = s[right]
+        if char in used and used[char] >= left:
+            left = used[char] + 1   # 重複したら左indexを+1ずらず
+        used[char] = right  # 各文字を最後に出たindexに更新
+        max_len = max(max_len, right - left + 1)    # 現在の重複なしの最長部分文字列の長さを更新
+    return max_len
 
-# 文字列 s が与えられた場合、最も長い文字列の長さを見つけます。
-# 部分文字列文字を繰り返さずに。
-
-# このプログラムは、与えられた文字列 s の中で最も長い部分文字列（substring）の長さを返す関数 lengthOfLongestSubstring を定義しています。
-# その部分文字列は、重複する文字を含んでいません。
-class Solution(object):
-    def lengthOfLongestSubstring(self, s):
-        n = len(s)
-        set_chars = set()
-        ans = 0
-        i, j = 0, 0
-        while i < n and j < n:
-            # 文字がsetにない場合、その文字を追加してjを進める
-            if s[j] not in set_chars:
-                set_chars.add(s[j])
-                j += 1
-                ans = max(ans, j - i)
-            # そうでない場合、setからs[i]を削除してiを進める
-            else:
-                set_chars.remove(s[i])
-                i += 1
-        return ans
-
-
-# インスタンスの作成
-solution = Solution()
 
 # 使用例
 strings = ["abcabcbb", "bbbbb", "pwwkew", ""]
 
 for s in strings:
     print(f"String: {s}")
-    print(f"Longest substring without repeating characters: {solution.lengthOfLongestSubstring(s)}\n")
+    print(f"Longest substring without repeating characters: {lengthOfLongestSubstring(s)}\n")
