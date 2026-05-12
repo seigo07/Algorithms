@@ -1,6 +1,5 @@
 # 与えられた二分木の各ノードの左右の子を交換し、二分木全体を反転
-
-
+# 時間計算量: O(n) （全ノードを1回見る）
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -12,11 +11,10 @@ def invert_tree(root):
     if root is None:
         return None
 
-    # 左右の子を交換する
+    # 左右の子を入れ替える
     root.left, root.right = root.right, root.left
 
-    # ツリー全体を反転（左右の子ツリーに再帰的に適用）
-    # 再帰呼び出しにより、ツリー内のすべてのノードを反転
+    # 左右の部分木も再帰的に反転
     invert_tree(root.left)
     invert_tree(root.right)
 
