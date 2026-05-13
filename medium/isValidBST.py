@@ -1,30 +1,41 @@
-# Given the root of a binary tree, determine if it is a valid binary search tree (BST).
-
-# 二分木のルートを指定して、それが有効な二分探索木 (BST) であるかどうかを判断します。
 class TreeNode(object):
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
+# 二分探索木（BST: Binary Search Tree）が有効か確認
+# 左の子 < 親
+# 右の子 > 親
+# すべての部分木でも同じ
+# 時間計算量: O(n) 全ノードを1回ずつ見る
+# 空間計算量: 再帰スタック分 平均：O(log n) 最悪（片側木）：O(n)
+def isValidBST(root):
 
-class Solution(object):
-    def isValidBST(self, root, min_val=float('-inf'), max_val=float('inf')):
-        if not root:
+    # DFSで範囲チェック
+    def dfs(node, low, high):
+
+        # nodeがNoneになったら（子がない）OK
+        if not node:
             return True
 
-        if not (min_val < root.val < max_val):
+        # BST条件違反
+        if not (low < node.val < high):
             return False
 
-        return self.isValidBST(root.left, min_val, root.val) and self.isValidBST(root.right, root.val, max_val)
+        # 左右を再帰チェック
+        return (
+            dfs(node.left, low, node.val) and
+            dfs(node.right, node.val, high)
+        )
+    
+    # 初期範囲は無限
+    return dfs(root, float("-inf"), float("inf"))
 
-
-# インスタンスの作成
-solution = Solution()
 
 # 使用例:
-root = TreeNode(2)
-root.left = TreeNode(1)
-root.right = TreeNode(3)
+root = TreeNode(5)
+root.left = TreeNode(3)
+root.right = TreeNode(7)
 
-print(solution.isValidBST(root))  # Trueを返すべきです
+print(isValidBST(root))  # True
