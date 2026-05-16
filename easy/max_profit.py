@@ -8,8 +8,7 @@ def max_profit(prices):
 
     for price in prices:
         min_price = min(min_price, price)   # より小さい価格が見つかったら最安値を更新
-        profit = price - min_price   # 今日売った場合の利益
-        max_profit = max(max_profit, profit)    # より大きな利益が見つかったら最大利益を更新
+        max_profit = max(max_profit, price - min_price)    # より大きな利益が見つかったら最大利益を更新
 
     return max_profit
 
