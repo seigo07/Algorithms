@@ -1,12 +1,13 @@
 # 与えられた二分木の各ノードの左右の子を交換し、二分木全体を反転
-# 時間計算量: O(n) （全ノードを1回見る）
+# 時間計算量: O(n)全ノードを1回見る
+# 空間計算量: O(h) 再帰スタックの深さ。h は木の高さ
 class TreeNode:
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
 
-
+# 木全体を上から順に左右反転する
 def invert_tree(root):
     if root is None:
         return None
