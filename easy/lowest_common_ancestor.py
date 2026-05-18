@@ -1,9 +1,10 @@
 # 与えられた二分探索木（Binary Search Tree、BST）内で、
-# 与えられた p と q の最小共通の祖先（Lowest Common Ancestor、LCA）を見つける
+# 与えられた p と q の最も深い共通祖先（Lowest Common Ancestor、LCA）を探す
 # BSTは、各ノードが特定の順序で整列された値を持つデータ構造であり、
 # LCAは与えられた p と q のノードの共通の祖先のうちで最も深いノードを指す
-
-
+# 時間計算量: O(n) 全ノードを最大1回見る
+# 空間計算量: O(h) 再帰スタック分 最悪 O(n) 木が一直線の場合 平均 O(log n) バランス木の場合
+# n はノード数、h は木の高さ
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -14,14 +15,14 @@ class TreeNode:
 def lowest_common_ancestor(root, p, q):
     # BSTの性質を利用して、LCAを見つける
     while root:
+        # pとqが現在のrootの値よりも小さい場合、左部分木に移動
         if p.val < root.val and q.val < root.val:
-            # pとqが現在のrootの値よりも小さい場合、左部分木に移動
             root = root.left
+        # pとqが現在のrootの値よりも大きい場合、右部分木に移動
         elif p.val > root.val and q.val > root.val:
-            # pとqが現在のrootの値よりも大きい場合、右部分木に移動
             root = root.right
+        # pとqが異なる部分木に存在する場合、LCAは現在のroot
         else:
-            # pとqが異なる部分木に存在する場合、LCAは現在のroot
             return root
 
 
