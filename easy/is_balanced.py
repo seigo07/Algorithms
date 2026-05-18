@@ -4,7 +4,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
-# 再帰的なアプローチを使用し、各ノードで、左部分木と右部分木の高さ差が 1以下かどうかを判定
+# DFSの再帰的なアプローチを使用し、各ノードで、左部分木と右部分木の高さ差が 1以下かどうかを判定
 def is_balanced(root):
     # ツリーの高さを計算
     def height(node):
