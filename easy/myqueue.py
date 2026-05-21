@@ -10,10 +10,9 @@ class myqueue:
 
     # out_stack が空なら in_stack から移す
     def pop(self):
-        # out_stackが空の場合、in_stackから要素をすべて取り出して逆順にout_stackに移動する
-        # これにより、最も古い要素がout_stackの先頭にくるようになる
+        # out_stack が空なら in_stack を逆順に移す
+        # これにより、最初に入れた値が out_stack の末尾に来るので FIFO になる
         self.peek()
-        # out_stackから要素を取り出し、FIFOの動作を実現
         return self.out_stack.pop()
 
     # 先頭要素を見る（取り出しは行わない）
