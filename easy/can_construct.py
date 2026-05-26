@@ -1,4 +1,4 @@
-# ransom_noteの各文字がmagazineから取得可能な場合はTrueを返す
+# magazine内の文字からransom_noteが作成可能かどうか
 from collections import Counter
 
 def can_construct(ransom_note, magazine):
