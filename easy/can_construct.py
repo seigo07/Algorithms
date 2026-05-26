@@ -1,4 +1,6 @@
 # magazine内の文字からransom_noteが作成可能かどうか
+# 時間計算量: O(n + m) n = len(ransomNote)
+# 空間計算量: O(m) m = len(magazine)
 from collections import Counter
 
 def can_construct(ransom_note, magazine):
