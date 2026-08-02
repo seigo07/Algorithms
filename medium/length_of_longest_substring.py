@@ -1,6 +1,6 @@
 # 文字列の中で、重複なしの最長部分文字列の長さを求める(abcabcbb→abcの3)
 # 時間: O(n) 空間: O(n) 各文字を最大2回しか見ないので高速
-def lengthOfLongestSubstring(s):
+def length_of_longest_substring(s):
     used = {}      # 各文字: 最後に出たindex {‘a’:0,‘b’:1,‘c’:2}
     left = 0       # 「重複なし部分文字列」の左端index
     max_len = 0
@@ -18,4 +18,4 @@ strings = ["abcabcbb", "bbbbb", "pwwkew", ""]
 
 for s in strings:
     print(f"String: {s}")
-    print(f"Longest substring without repeating characters: {lengthOfLongestSubstring(s)}\n")
+    print(f"Longest substring without repeating characters: {length_of_longest_substring(s)}\n")

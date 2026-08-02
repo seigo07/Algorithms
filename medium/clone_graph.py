@@ -9,30 +9,26 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 
 
-class Solution(object):
-    def cloneGraph(self, node):
-        if not node:
-            return None
+def clone_graph(node):
+    if not node:
+        return None
 
-        visited = {}
+    visited = {}
 
-        def dfs(node):
-            if node.val in visited:
-                return visited[node.val]
+    def dfs(node):
+        if node.val in visited:
+            return visited[node.val]
 
-            clone = Node(node.val)
-            visited[node.val] = clone
+        clone = Node(node.val)
+        visited[node.val] = clone
 
-            for neighbor in node.neighbors:
-                clone.neighbors.append(dfs(neighbor))
+        for neighbor in node.neighbors:
+            clone.neighbors.append(dfs(neighbor))
 
-            return clone
+        return clone
 
-        return dfs(node)
+    return dfs(node)
 
-
-# インスタンスの作成
-solution = Solution()
 
 # 使用例
 # グラフの作成
@@ -50,7 +46,7 @@ node3.neighbors = [node2, node4]
 node4.neighbors = [node1, node3]
 
 # グラフのクローンを作成
-cloned_node1 = solution.cloneGraph(node1)
+cloned_node1 = clone_graph(node1)
 
 # クローンの内容を表示
 print(cloned_node1.val)  # 1

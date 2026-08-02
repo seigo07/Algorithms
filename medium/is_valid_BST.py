@@ -10,7 +10,7 @@ class TreeNode(object):
 # すべての部分木でも同じ
 # 時間計算量: O(n) 全ノードを1回ずつ見る
 # 空間計算量: 再帰スタック分 平均：O(log n) 最悪（片側木）：O(n)
-def isValidBST(root):
+def is_valid_BST(root):
 
     # DFSで範囲チェック
     def dfs(node, low, high):
@@ -38,4 +38,4 @@ root = TreeNode(5)
 root.left = TreeNode(3)
 root.right = TreeNode(7)
 
-print(isValidBST(root))  # True
+print(is_valid_BST(root))  # True
