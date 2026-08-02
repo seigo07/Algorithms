@@ -9,7 +9,7 @@ class TreeNode(object):
         self.right = right
 
 
-def level_order(self, root):
+def level_order(root):
     if not root:
         return []
 
