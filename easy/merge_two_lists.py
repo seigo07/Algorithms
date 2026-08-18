@@ -8,7 +8,13 @@ class ListNode:
 def merge_two_lists(l1, l2):
 
     dummy = ListNode()  # 完成リストの最初の固定位置 0 -> 1 -> 1 -> 2 -> 3 -> 4 -> 4
-    current = dummy # 初期値はdummy 現在値のみ
+    current = dummy # 今どこまで作ったかを示す作業用ポインタ
+
+    # ex. dummy（最初の位置から動かない）
+    #   ↓
+    # [0] → [1] → [1] → [2]
+    #                     ↑
+    #                   current（現在値のみ追いかける）
 
     while l1 and l2:
         # 小さい方の要素を新しいリンクリストに追加
