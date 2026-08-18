@@ -1,4 +1,5 @@
 # 配列numsの中から足してtargetになる2つのindexを返す
+# 時間・空間計算量：O(n)
 def two_sum(nums, target):
 
     seen = {}   # ループした{num: i}を保存
