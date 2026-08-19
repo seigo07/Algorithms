@@ -1,10 +1,12 @@
+# DFSの再帰的なアプローチを使用し、各ノードで、左部分木と右部分木の高さ差が 1以下かどうかを判定
+# 時間計算量：O(n) 空間計算量：O(h)
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
-# DFSの再帰的なアプローチを使用し、各ノードで、左部分木と右部分木の高さ差が 1以下かどうかを判定
 def is_balanced(root):
     # ツリーの高さを計算
     def height(node):
