@@ -1,5 +1,7 @@
 # magazine内の文字からransom_noteが作成可能かどうか
-# 時間計算量: O(n + m) 空間計算量: O(m) n = len(ransomNote) m = len(magazine)
+# 時間計算量: O(n + m)
+# 空間計算量: O(k) magazine に出てくる文字の種類数
+# n = ransomNoteの文字数 m = magazineの文字数 ex. magazine = "aab" → m=3, k=2 ransomNote = "aa" → n=2
 
 from collections import Counter
 
