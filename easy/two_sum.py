@@ -1,10 +1,8 @@
 # 配列numsの中から足してtargetになる2つのindexを返す
-# 時間・空間計算量：O(n)
+# 時間・空間計算量：O(n) 1回ループするだけなので計算量が O(n)で済む
 def two_sum(nums, target):
 
-    seen = {}   # ループした{num: i}を保存
-
-    # 1回ループするだけなので計算量が O(n)で済む
+    seen = {}   # 左からnumsを見て、これまで見た数字 → そのindex{num: i}を保存
     for i, num in enumerate(nums):
         complement = target - num   # 残りの必要な値を計算
 

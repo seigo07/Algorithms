@@ -1,32 +1,27 @@
 # 「1」(陸地) と「0」(水)
-# 「まだ見てない1」を見つけたら、上下左右をDFS/BFSで再帰探索
-#  カウント+1（探索済みとする）
+# 「まだ見てない1」を見つけたら「上下左右の1」をDFS/BFSで再帰探索
+# 見つけた陸は "0" に変更、count+1 して訪問済みにする
+# 時間・空間計算量: O(m × n)
 
 from collections import deque
 
-def numIslands(grid):
+def num_islands(grid):
     rows = len(grid)
     cols = len(grid[0])
     count = 0
 
-    # 上下左右のそれぞれ行き止まり(1→0)まで探す
-    # 行き止まったら次へ行く(上→下→左→右)
     # スタック（LIFO）/ 再帰関数 / 組み合わせ全列挙
     def dfs(r, c):
-        if (
-            r < 0 or r >= rows or   # 範囲外
-            c < 0 or c >= cols or   # 海
-            grid[r][c] == "0"       # 訪問済み
-        ):
-            return
+        if 0 <= r < rows and 0 <= c < cols and grid[r][c] == "1":
         
-        grid[r][c] = '0'  # 訪問済みにする
+            grid[r][c] = '0'  # 訪問済みにする
 
-        # 上下左右探索
-        dfs(r - 1, c)    # 上
-        dfs(r + 1, c)    # 下
-        dfs(r, c - 1)    # 左
-        dfs(r, c + 1)    # 右
+            # 上下左右探索
+            dfs(r - 1, c)    # 上
+            dfs(r + 1, c)    # 下
+            dfs(r, c - 1)    # 左
+            dfs(r, c + 1)    # 右
+
 
     # 1見つけたらqueueに入れる
     # 1個ずつ取り出して上下左右を見る(+1の上下左右のマスを見る。次に+2の上下左右のマスを見る。次に+3の上下左右のマスを見る)
@@ -53,14 +48,12 @@ def numIslands(grid):
                 nc = c + dc
 
                 # 範囲内 かつ 島なら
-                if (
-                    0 <= nr < rows and
-                    0 <= nc < cols and
-                    grid[nr][nc] == "1"
-                ):
+                if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == "1":
                     grid[nr][nc] = "0"  # 訪問済みにする
                     q.append((nr, nc))  # 次に探索するためqueueへ
 
+
+    # 左上から全マスを確認し、上下左右のそれぞれ行き止まり(1→0)まで探す
     for r in range(rows):
         for c in range(cols):
             if grid[r][c] == '1':   # 新しい島発見
@@ -70,6 +63,7 @@ def numIslands(grid):
 
     return count
 
+
 grid = [
     ['1', '1', '0', '0', '0'],
     ['1', '1', '0', '0', '0'],
@@ -77,4 +71,4 @@ grid = [
     ['0', '0', '0', '1', '1']
 ]
 
-print(numIslands(grid)) # 出力: 3 (左上、真ん中、右下)
+print(num_islands(grid)) # 出力: 3 (左上、真ん中、右下)
