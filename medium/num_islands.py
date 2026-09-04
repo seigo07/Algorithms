@@ -1,7 +1,8 @@
 # 「1」(陸地) と「0」(水)
-# 「まだ見てない1」を見つけたら「上下左右の1」をDFS/BFSで再帰探索
-# 見つけた陸は "0" に変更、count+1 して訪問済みにする
-# 時間・空間計算量: O(m × n)
+# 「まだ見てない1」を見つけたらcount+1 
+# 「上下左右の1」をDFS/BFSで再帰探索
+# 見つけた陸は "0" に変更し訪問済みにする
+# 時間・空間計算量: O(mn)
 
 from collections import deque
 
@@ -23,43 +24,33 @@ def num_islands(grid):
             dfs(r, c + 1)    # 右
 
 
-    # 1見つけたらqueueに入れる
-    # 1個ずつ取り出して上下左右を見る(+1の上下左右のマスを見る。次に+2の上下左右のマスを見る。次に+3の上下左右のマスを見る)
+    # queueに入れ、1個ずつ取り出して上下左右を見る(+1の上下左右のマスを見る。次に+2の上下左右のマスを見る。次に+3の上下左右のマスを見る)
     # キュー（FIFO）/ 最短経路
     def bfs(r, c):
-        q = deque([(r,c)])  # 最初の島セルを入れる
-        grid[r][c] = '0'  # 訪問済みにする
+        q = deque([(r, c)])
+        grid[r][c] = "0"  # 訪問済み
 
-        # queueが空になるまで探索
         while q:
-            r, c = q.popleft()  # 先頭取り出し
+            r, c = q.popleft()  # 「1」(陸地)の座標を一個ずつ取り出す
 
-            # 上下左右
-            directions = [
-                (-1, 0),  # 上
-                (1, 0),   # 下
-                (0, -1),  # 左
-                (0, 1)    # 右
-            ]
-
-            for dr, dc in directions:
-
-                nr = r + dr
-                nc = c + dc
-
-                # 範囲内 かつ 島なら
+            # 上下左右探索
+            for nr, nc in [
+                (r - 1, c),  # 上
+                (r + 1, c),  # 下
+                (r, c - 1),  # 左
+                (r, c + 1)   # 右
+            ]:
                 if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == "1":
                     grid[nr][nc] = "0"  # 訪問済みにする
-                    q.append((nr, nc))  # 次に探索するためqueueへ
-
+                    q.append((nr, nc))  # 「1」(陸地)の座標を追加
 
     # 左上から全マスを確認し、上下左右のそれぞれ行き止まり(1→0)まで探す
     for r in range(rows):
         for c in range(cols):
             if grid[r][c] == '1':   # 新しい島発見
+                count += 1
                 # dfs(r, c)
                 bfs(r, c)
-                count += 1
 
     return count
 
