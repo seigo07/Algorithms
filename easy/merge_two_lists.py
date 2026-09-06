@@ -3,12 +3,12 @@ class ListNode:
         self.val = val
         self.next = next
 
-# 2つのソート済み連結リストを、昇順で1つのソートされたリストを作成
+# 2つの昇順Listを1つに結合
 # 時間計算量: O(n + m) 空間計算量: O(1)
 def merge_two_lists(l1, l2):
 
-    dummy = ListNode()  # 完成リストの最初の固定位置 0 -> 1 -> 1 -> 2 -> 3 -> 4 -> 4
-    current = dummy # 今どこまで作ったかを示す作業用ポインタ
+    dummy = ListNode()  # 完成リストの先頭の固定ポインタ(currentは上書きされていくため必要) 0 -> 1 -> 1 -> 2 -> 3 -> 4 -> 4
+    current = dummy # 今どこまで作ったかを示す作業用ポインタ（移動時に最後のノードで上書きされる）
 
     # ex. dummy（最初の位置から動かない）
     #   ↓
@@ -17,12 +17,18 @@ def merge_two_lists(l1, l2):
     #                   current（現在値のみ追いかける）
 
     while l1 and l2:
-        # 小さい方の要素を新しいリンクリストに追加
+        # l1 と l2 の先頭を比較して、小さい方の要素を新しいリストに追加するだけ
+        # 1 vs 1 → 1
+        # 2 vs 1 → 1
+        # 2 vs 3 → 2
+        # 4 vs 3 → 3
+        # 4 vs 4 → 4
+        # 残り   → 4
         if l1.val < l2.val:
             current.next, l1 = l1, l1.next
         else:
             current.next, l2 = l2, l2.next
-        current = current.next
+        current = current.next # currentを追加したノードまで進める
 
     current.next = l1 or l2 # どちらかのリストがNoneになった場合、残りのリストを追加
     return dummy.next  # dummy 0 -> 1 -> 1 -> 2 -> 3 -> 4 -> 4 dummy.next 1 -> 1 -> 2 -> 3 -> 4 -> 4
