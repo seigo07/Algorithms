@@ -1,33 +1,39 @@
-# Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+# 二分木のノードの値のレベル順のトラバーサルを返す
+# 時間・空間計算量: O(n)
 
-# バイナリ ツリーのルートを指定すると、そのノードの値のレベル順序の走査を返します。 (つまり、左から右へ、レベルごとに)。
-# 二分木のノードの値のレベル順のトラバーサルを返すプログラムです。
-class TreeNode(object):
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
+from collections import deque
 
 def level_order(root):
     if not root:
         return []
 
-    result, queue = [], [root]
+    queue = deque([root])  # 次に処理するノード
+    result = [] # 最終結果
 
     while queue:
-        level = []
-        level_size = len(queue)
-        for i in range(level_size):
-            current_node = queue.pop(0)
-            level.append(current_node.val)
-            if current_node.left:
-                queue.append(current_node.left)
-            if current_node.right:
-                queue.append(current_node.right)
+        level = []  # 現在階層の値を保持
+
+        # loop開始時にlen(queue)を固定し現在の階層にあるノード数だけ処理 
+        for _ in range(len(queue)):
+            node = queue.popleft()  # popした値は消える
+            level.append(node.val)
+
+            # 追加分は次のloopで処理
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
         result.append(level)
 
     return result
+
+
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 
 root = TreeNode(3)
