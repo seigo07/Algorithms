@@ -12,7 +12,7 @@ def climb_stairs(n):
     # 動的計画法（フィボナッチ数列）を使用してステップ数を計算（最初の2つの数が1で、それ以降の数は前の2つの数の和である数列）
     # n = 10 -> [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
     # 3段目からn段目まで計算
-    for i in range(3, n + 1):
+    for _ in range(3, n + 1):
         curr = prev2 + prev1
         prev2 = prev1
         prev1 = curr

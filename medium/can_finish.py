@@ -1,27 +1,24 @@
+# 前提科目に循環（ループ）があるかを調べ、全科目を履修できるか判定(トポロジカルソート BFS)
+# [a, b] → 「bを先に受けないとaを受けられない」 ループがあると不可能
+# 時間・空間計算量: O(V + E) V = numCourses、E = prerequisitesの数
 
 from collections import deque
 
-# 授業の依存関係から全コースを最後まで履修できるか判定(トポロジカルソート BFS)
-# [a, b] → 「bを先に受けないとaを受けられない」 ループがあると不可能
-# 時間・空間計算量: O(コース数 + prerequisite数)　各ノードと辺を1回ずつ見る
 def can_finish(num_courses, prerequisites):
 
-    graph = [[] for _ in range(num_courses)] # 次に行けるコース(各コースの次のコース一覧)
-    indegree = [0] * num_courses # prerequisite数
+    graph = [[] for _ in range(num_courses)] # 履修した後に行けるコース ex. graph[[1], []] → [1]: 科目0 → 科目1、[]: 科目1 → なし
+    indegree = [0] * num_courses # その科目を履修する前に終える必要がある科目数 ex. indegree = [0, 1] → 科目0は前提科目なし 科目1は前提科目が1つ（科目0）
 
-    # グラフ構築
+    # pre → course のグラフを構築
     for course, pre in prerequisites:
         graph[pre].append(course)   # pre → course  [[1], [2], [3], []]
         indegree[course] += 1       # 入次数(まだ終わっていないprerequisiteの数)+1  [0, 1, 1, 1]
 
-    queue = deque() # 今すぐ履修可能(prerequisiteが0のコースを入れる)   [0]
-    for i in range(num_courses):
-        if indegree[i] == 0:
-            queue.append(i)
-    
+    # 前提科目がないindegree == 0 の科目を queue に入れる
+    queue = deque( i for i in range(num_courses) if indegree[i] == 0 )
     finished = 0    # 履修済み数
 
-    # BFS → prerequisiteを減らしていく
+    # BFS → 履修するたび、次の科目の indegree を減らす
     while queue:
 
         # 先頭コースを履修
@@ -38,7 +35,7 @@ def can_finish(num_courses, prerequisites):
             if indegree[next_course] == 0:
                 queue.append(next_course)
 
-    # 全部履修できたか判定
+    # 全科目を処理できれば True 循環があると途中で進めなくなるため False
     return finished == num_courses
 
 
