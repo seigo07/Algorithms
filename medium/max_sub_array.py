@@ -4,8 +4,7 @@
 # 空間計算量: O(1)
 def max_sub_array(nums):
 
-    current_sum = nums[0]  # 現在位置で終わる最大合計
-    max_sum = nums[0]      # これまでの最大合計
+    current_sum = max_sum = nums[0]  # 現在位置で終わる最大合計
 
     # rangeを使用する事で空間計算量がo(1)になる
     for i in range(1, len(nums)):
