@@ -1,5 +1,6 @@
 # points の中から、原点 (0,0) に近い点を（距離の2乗 = x² + y² の近い順に）k 個返す
-# 時間計算量: O(n log n) 空間計算量: O(n) n は points の数
+# 時間計算量: O(n log k) n：全データ数（points）k：取得したい点の数
+# 空間計算量: O(k)
 import heapq
 
 def k_closest(points, k):
