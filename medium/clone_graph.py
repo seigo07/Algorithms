@@ -1,8 +1,18 @@
-# Given a reference of a node in a connected undirected graph.
-# Return a deep copy (clone) of the graph.
-# Each node in the graph contains a value (int) and a list (List[Node]) of its neighbors.
 
-# このプログラムは、与えられた連結無向グラフを深いコピーとしてクローンする目的で作成されています。
+# 元のノードと同じ値と接続関係を持つ新しいノードを作る
+
+# DFS + Hash Map
+# 1. 現在のノードをコピーする。
+# 2. Hash Mapに {元ノード: コピーノード} を保存する。
+# 3. 隣接ノードをDFSで再帰的にコピーする。
+# 4. コピーした隣接ノードを接続する。
+# 5. すでにコピー済みなら辞書から取得する（無限ループ防止）。
+
+# 計算量: ノード数を V、接続数（辺数）を E とする
+# 時間計算量：O(V + E)
+# 空間計算量：O(V)
+
+
 class Node:
     def __init__(self, val = 0, neighbors = None):
         self.val = val
@@ -19,13 +29,13 @@ def clone_graph(node):
         if node.val in visited:
             return visited[node.val]
 
-        clone = Node(node.val)
-        visited[node.val] = clone
+        copy = Node(node.val)
+        visited[node.val] = copy
 
         for neighbor in node.neighbors:
-            clone.neighbors.append(dfs(neighbor))
+            copy.neighbors.append(dfs(neighbor))
 
-        return clone
+        return copy
 
     return dfs(node)
 
