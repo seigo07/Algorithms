@@ -1,24 +1,38 @@
-# 前提科目に循環（ループ）があるかを調べ、全科目を履修できるか判定(トポロジカルソート BFS)
+
+# 前提科目に循環（ループ）があるかを調べ、全科目を履修できるか判定(トポロジカルソート + BFS（Kahn法）)
 # [a, b] → 「bを先に受けないとaを受けられない」 ループがあると不可能
+
+# - graph：各コースの次に履修できるコース ex. 0の場合次に履修できるのは1 [[1], []]
+# - indegree：各コースに必要な前提科目の数 ex. 0の前提条件は0個 1の前提条件は1個 [0, 1]
+# - queue：履修可能なコース（前提条件が0になったコース） ex. deque([0])
+# - count：履修完了したコース数 ex. 0 → 1 → 2
+
+# 1. prerequisites から graph と indegree を作成
+# 2. indegree == 0 のコースを queue に追加
+# 3. BFSでコースを取り出し、次のコースの indegree を減らす
+# 4. indegree == 0 になったコースを queue に追加
+# 5. count == numCourses なら True
+
 # 時間・空間計算量: O(V + E) V = numCourses、E = prerequisitesの数
 
 from collections import deque
 
 def can_finish(num_courses, prerequisites):
 
-    graph = [[] for _ in range(num_courses)] # 履修した後に行けるコース ex. graph[[1], []] → [1]: 科目0 → 科目1、[]: 科目1 → なし
-    indegree = [0] * num_courses # その科目を履修する前に終える必要がある科目数 ex. indegree = [0, 1] → 科目0は前提科目なし 科目1は前提科目が1つ（科目0）
+    # 1. グラフと入次数を初期化
+    graph = [[] for _ in range(num_courses)]
+    indegree = [0] * num_courses
 
-    # pre → course のグラフを構築
+    # 2. グラフと入次数を作成
     for course, pre in prerequisites:
-        graph[pre].append(course)   # pre → course  [[1], [2], [3], []]
-        indegree[course] += 1       # 入次数(まだ終わっていないprerequisiteの数)+1  [0, 1, 1, 1]
+        graph[pre].append(course)
+        indegree[course] += 1
 
-    # 前提科目がないindegree == 0 の科目を queue に入れる
+    # 3. 入次数0のコースをキューに追加
     queue = deque( i for i in range(num_courses) if indegree[i] == 0 )
     finished = 0    # 履修済み数
 
-    # BFS → 履修するたび、次の科目の indegree を減らす
+    # 4. BFSで履修 → 次の科目の indegree を減らす
     while queue:
 
         # 先頭コースを履修

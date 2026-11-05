@@ -1,53 +1,57 @@
-# A trie (pronounced as "try") or prefix tree is a tree data structure
-# used to efficiently store and retrieve keys in a dataset of strings.
-# There are various applications of this data structure, such as autocomplete and spellchecker.
 
-# トライ (「トライ」と発音) またはプレフィックス ツリーは、文字列のデータセット内のキーを効率的に格納および取得するために使用されるツリー データ構造です。
-# このデータ構造には、オートコンプリートやスペルチェッカーなど、さまざまな用途があります
+# 文字列を保存し、次の3つの操作を実現する
+# 基本アルゴリズム：Trie（木構造）＋ Hash Map（辞書）
 
-# このプログラムは、Trie（または接頭辞ツリー）というデータ構造の実装です。Trieは特にテキストの検索や接頭辞ベースの検索で役立つ効率的なデータ構造です。
-class TrieNode:
+# - insert(word)：単語を登録
+# - search(word)：単語が完全一致するか確認
+# - startsWith(prefix)：指定した文字列で始まる単語が存在するか確認
+
+# 時間計算量: L = 入力文字数 O(L)
+# 空間計算量: insert O(L) search, startsWith O(1)
+
+
+class Trie:
     def __init__(self):
-        self.children = {}
-        self.is_end_of_word = False
+        self.root = {}  # Trieの起点
 
-
-class Trie(object):
-
-    def __init__(self):
-        self.root = TrieNode()
-
-    def insert(self, word):
+    def insert(self, word: str) -> None:
         node = self.root
-        for char in word:
-            if char not in node.children:
-                node.children[char] = TrieNode()
-            node = node.children[char]
-        node.is_end_of_word = True
 
-    def search(self, word):
-        node = self.root
         for char in word:
-            if char not in node.children:
+            if char not in node:
+                node[char] = {}  # 文字がなければ追加
+            node = node[char]    # 次の階層へ移動
+
+        node["#"] = True  # 単語の終端を記録
+
+    def search(self, word: str) -> bool:
+        node = self.root
+
+        for char in word:
+            if char not in node:
                 return False
-            node = node.children[char]
-        return node.is_end_of_word
+            node = node[char]
 
+        return "#" in node  # 単語の終端か確認
 
-    def startsWith(self, prefix):
+    def startsWith(self, prefix: str) -> bool:
         node = self.root
+
         for char in prefix:
-            if char not in node.children:
+            if char not in node:
                 return False
-            node = node.children[char]
-        return True
+            node = node[char]
+
+        return True  # prefixがすべて存在
 
 
-# 使用例
+# Example 1
 trie = Trie()
 trie.insert("apple")
-print(trie.search("apple"))   # True
-print(trie.search("app"))     # False
-print(trie.startsWith("app")) # True
+
+print(trie.search("apple"))      # True
+print(trie.search("app"))        # False
+print(trie.startsWith("app"))    # True
+
 trie.insert("app")
-print(trie.search("app"))     # True
+print(trie.search("app"))        # True

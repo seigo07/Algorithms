@@ -1,7 +1,15 @@
-# You are given an array of strings tokens that represents an arithmetic expression in a Reverse Polish Notation.
-# Evaluate the expression. Return an integer that represents the value of the expression.
 
-# このプログラムは逆ポーランド記法で書かれた数式を評価します。
+# 逆ポーランド記法で書かれた数式を評価する
+# tokens = ["2", "1", "+", "3", "*"] → (2 + 1) * 3 = 9
+
+# 1. 空の stack を作る。
+# 2. tokens を先頭から順に処理する。
+# 3. 数字なら stack に追加（append）。
+# 4. 演算子なら2つ取り出す（pop）→計算→結果を追加。
+# 5. 最後に残った値を返す。
+
+# 時間空間計算量 O(n)
+
 def eval_RPN(tokens):
     stack = []
 
