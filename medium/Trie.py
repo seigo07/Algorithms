@@ -19,7 +19,7 @@ class Trie:
 
         for char in word:
             if char not in node:
-                node[char] = {}  # 文字がなければ追加
+                node[char] = {}  # 文字がなければ追加（新しい辞書を作る → メモリ増加）
             node = node[char]    # 次の階層へ移動
 
         node["#"] = True  # 単語の終端を記録
@@ -30,7 +30,7 @@ class Trie:
         for char in word:
             if char not in node:
                 return False
-            node = node[char]
+            node = node[char]   # 参照先を変えるだけ
 
         return "#" in node  # 単語の終端か確認
 
@@ -40,7 +40,7 @@ class Trie:
         for char in prefix:
             if char not in node:
                 return False
-            node = node[char]
+            node = node[char]   # 参照先を変えるだけ
 
         return True  # prefixがすべて存在
 
