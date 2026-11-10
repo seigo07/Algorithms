@@ -1,11 +1,22 @@
+
+# リンクリストに循環（サイクル）があるかどうかを判定
+# slow は1歩、fast は2歩進む
+# 2つが出会う → 循環あり
+# fast が末尾に到達 → 循環なし
+
+# 1. slow と fast を head に設定
+# 2. slow を1つ、fast を2つ進める
+# 3. 同じノードなら True
+# 4. 末尾に到達したら False
+
+# 時間計算量: O(n) 空間計算量: O(1)
+
 class ListNode:
     def __init__(self, val):
         self.val = val
         self.next = None
 
-# リンクリストに循環（サイクル）があるかどうかを判定
-# slow は1歩、fast は2歩進む。循環があればいつか同じノードで出会う
-# 時間計算量: O(n) 空間計算量: O(1)
+
 def has_cycle(head):
 
     slow = fast = head

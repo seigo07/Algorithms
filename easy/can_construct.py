@@ -1,4 +1,12 @@
+
 # magazine内の文字からransom_noteが作成可能かどうか
+
+# 1. magazine に含まれる各文字の出現回数を記録する。
+# 2. ransomNote の文字を1文字ずつ取り出す。
+# 3. 必要な文字が残っているか確認する。
+# 4. 足りなければ False、足りていればその文字の残り個数を1減らす。
+# 5. 最後まで確認できれば True を返す。
+
 # 時間計算量: O(n + m)
 # 空間計算量: O(k) magazine に出てくる文字の種類数
 # n = ransomNoteの文字数 m = magazineの文字数 ex. magazine = "aab" → m=3, k=2 ransomNote = "aa" → n=2

@@ -1,10 +1,23 @@
+
+# 2つの昇順Listを1つに結合
+
+# 基本アルゴリズム: Two Pointers
+
+# 1. 2つのリストの先頭ノードを比較する。
+# 2. 小さい方を結果のリストにつなぐ。
+# 3. 選んだリストのポインタを次へ進める。
+# 4. 片方が空になるまで繰り返す。
+# 5. 残っているノードを最後につなぐ。
+
+# 時間計算量: O(n + m) 空間計算量: O(1)
+
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
-# 2つの昇順Listを1つに結合
-# 時間計算量: O(n + m) 空間計算量: O(1)
+
 def merge_two_lists(l1, l2):
 
     dummy = ListNode()  # 完成リストの先頭の固定ポインタ(currentは上書きされていくため必要) 0 -> 1 -> 1 -> 2 -> 3 -> 4 -> 4
