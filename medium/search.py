@@ -11,6 +11,9 @@
 # 5. target が存在し得る側だけを残して探索範囲を狭める。
 # 6. 見つからなければ -1 を返す。
 
+# 時間計算量：O(log n) 空間計算量：O(1)
+
+
 def search(nums, target):
     left, right = 0, len(nums) - 1
     while left <= right:
