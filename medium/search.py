@@ -1,34 +1,38 @@
-# There is an integer array nums sorted in ascending order (with distinct values).
-# Prior to being passed to your function, nums is possibly rotated at an unknown pivot index k (1 <= k < nums.length)
-# such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed).
-# For example, [0,1,2,4,5,6,7] might be rotated at pivot index 3 and become [4,5,6,7,0,1,2].
 
-# ある数列が与えられたときにその数列内で目的の数字(target)の位置を返す必要があります。
-# 数列は元々昇順にソートされていたが、ある点でローテーションされる可能性があります。
-# このローテーションは任意の位置で行われるため、数列内の数の順番は変わっている可能性があります。
+# 回転された昇順配列 nums から target を探し、存在すればそのインデックス、存在しなければ -1 を返す
+# 回転されていても、中央で分割した左右の少なくとも一方は昇順になっている
+
+# 基本アルゴリズム: Binary Search
+
+# 1. left と right で探索範囲を決める。
+# 2. mid（中央のインデックス）を計算する。
+# 3. nums[mid] == target なら mid を返す。
+# 4. 左半分と右半分のどちらが昇順かを判定する。
+# 5. target が存在し得る側だけを残して探索範囲を狭める。
+# 6. 見つからなければ -1 を返す。
+
 def search(nums, target):
-    if not nums:
-        return -1
-
-    low, high = 0, len(nums) - 1
-
-    while low <= high:
-        mid = (low + high) // 2
-        if target == nums[mid]:
+    left, right = 0, len(nums) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] == target:
             return mid
-
-        # この部分が通常のバイナリサーチと異なります。
-        if nums[low] <= nums[mid]:
-            if nums[low] <= target <= nums[mid]:
-                high = mid - 1
+        # 左半分が昇順の場合
+        if nums[left] <= nums[mid]:
+            # target が左半分にあるなら左を探索
+            if nums[left] <= target <= nums[mid]:
+                right = mid - 1
+            # target が右半分にあるなら右を探索
             else:
-                low = mid + 1
+                left = mid + 1
+        # 右半分が昇順の場合
         else:
-            if nums[mid] <= target <= nums[high]:
-                low = mid + 1
+            # target が左半分にあるなら左を探索
+            if nums[mid] <= target <= nums[right]:
+                left = mid + 1
+            # target が左半分にあるなら左を探索
             else:
-                high = mid - 1
-
+                right = mid - 1
     return -1
 
 
