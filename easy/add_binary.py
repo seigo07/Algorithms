@@ -7,7 +7,8 @@
 # 4. 結果を2進数文字列に変換
 # 5. 先頭の0bを除去して返す
 
-# 時間空間計算量：O(n) n = max(len(a), len(b))
+# 時間計算量: O(n + m) n = len(a)、m = len(b)
+# 空間計算量: O(n + m)
 
 
 def add_binary(a: str, b: str) -> str:
